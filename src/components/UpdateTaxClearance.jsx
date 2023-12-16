@@ -40,10 +40,15 @@ function UpdateTaxClearance() {
   
     useEffect(() => {
       dispatch(gettaxclearance(id))
-
+setTempCompanyName(data.companyName)
+     setTempCreatedAt(data.createdAt)
+     setTempExpiryDate(data.expiryDate)
+     setTempStartPeriod(data.startPeriod)
+     setTempBusinessPartnerNo(data.businessPartnerNo)
+     steTempPdf(data.pdf)
     }, [success])
 
-  
+  console.log(tempCompanyName,tempCreatedAt,tempExpiryDate,tempBusinessPartnerNo,tempPdf)
  
     function submitTaxClearance(e) {
       e.preventDefault();
