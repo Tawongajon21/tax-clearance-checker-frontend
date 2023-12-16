@@ -41,7 +41,8 @@ function UpdateTaxClearance() {
     function submitTaxClearance(e) {
       e.preventDefault();
   dispatch(updatetaxclearance(id,companyName,businessPartnerNo,startPeriod,expiryDate,pdf))
-
+alert("You have succesfully updated your tax clearance")
+     navigate("/tax-clearances")
 
   
 }
