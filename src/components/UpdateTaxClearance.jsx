@@ -28,8 +28,15 @@ function UpdateTaxClearance() {
     const [ businessPartnerNo, setBusinessPartnerNo] = useState(loading ? "loading...": error? "error...":data.businessPartnerNo)
     const [startPeriod, setStartPeriod] = useState(loading ? "loading...": error? "error...":data.startPeriod)
     const [expiryDate, setExpiryDate] = useState(loading ? "loading...": error? "error...": data.expiryDate) 
+ 
+    const [tempCompanyName, setTempCompanyName] = useState();
+    const [ tempcreatedAt, setTempCreatedAt] = useState();
+  
+    const [ tempbusinessPartnerNo, setTempBusinessPartnerNo] = useState()
+    const [tempStartPeriod, setTempStartPeriod] = useState()
+    const [tempExpiryDate, setTempExpiryDate] = useState() 
 
-    const [pdf, setpdf] = useState(loading ? "loading...": error? "error...": data.pdf)
+    const [tempPdf, setTempPdf] = useState()
   
     useEffect(() => {
       dispatch(gettaxclearance(id))
