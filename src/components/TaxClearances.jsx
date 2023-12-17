@@ -135,13 +135,9 @@ if (searchPhrase) {
                                cursor:"pointer"
                           
                              }} class="dropdown-item" onClick={()=>{
-                              const ask = window.confirm("Are you sure you want to delete this Record ?")
-                              if (ask===false) {
-                                  alert("Record  Has Not Been Deleted")
-                              }else{
-                                dispatch(deletetaxclearance(_id))
-                               window.location.reload()
-                              }
+                              dispatch(deletetaxclearance(_id))
+                              //window.location.reload()
+                            
                              
                              }}
                                ><i class="bx bx-trash me-1"></i> Delete</span
@@ -178,7 +174,7 @@ return     <tr key={_id}>
                cursor:"pointer"
              }} class="dropdown-item" onClick={()=>{
                dispatch(deletetaxclearance(_id))
-               ///window.location.reload()
+               window.location.reload()
              }}
                ><i class="bx bx-trash me-1"></i> Delete</span
              >
