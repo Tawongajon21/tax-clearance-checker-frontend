@@ -17,16 +17,18 @@ function TaxClearances() {
   const dispatch= useDispatch()
   const navigate= useNavigate()
   const  {loading,error,data}= useSelector(state=>state.getTaxClearances);
+ 
 
 
-
+console.log("hello");
 
 
 
 const [searchPhrase, setsearchPhrase] = useState("")
 document.title="Tax clearance checker - Tax clearances "
 useEffect(() => {
- dispatch(gettaxclearances())
+ 
+  dispatch(gettaxclearances())
 }, [])
 
 let companies;
@@ -129,7 +131,7 @@ if (searchPhrase) {
                                ><i class="bx bx-edit-alt me-1"></i> View</Link>
                              <Link  class="dropdown-item" to={`/update-tax-clearance/${_id}`} 
                                ><i class="bx bx-trash me-1"></i>Edit</Link>
-                             <span style={{
+                            <span style={{
                                cursor:"pointer"
                           
                              }} class="dropdown-item" onClick={()=>{
@@ -176,7 +178,7 @@ return     <tr key={_id}>
                cursor:"pointer"
              }} class="dropdown-item" onClick={()=>{
                dispatch(deletetaxclearance(_id))
-               window.location.reload()
+               ///window.location.reload()
              }}
                ><i class="bx bx-trash me-1"></i> Delete</span
              >

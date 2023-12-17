@@ -139,6 +139,7 @@ export const updatetaxclearance =(id,companyName,businessPartnerNo,startPeriod,e
       }
     
       })
+      console.log(data);
       dispatch({type:DELETE_TAX_CLEARANCE_SUCCESS,payload:data.id})
     } catch (error) {
       const message=  error.response&& error.response.data.message

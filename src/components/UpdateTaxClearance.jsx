@@ -7,14 +7,20 @@ import TopNav from './TopNav'
 import { useNavigate, useParams } from 'react-router-dom'
 import Loading from './Loading'
 import Error from './Error'
-import { gettaxclearance, updatetaxclearance } from '../redux/actions/taxclearanceActions'
+import { gettaxclearance, gettaxclearances, updatetaxclearance } from '../redux/actions/taxclearanceActions'
 
 function UpdateTaxClearance() {
  const taxClearance= useSelector((data)=>data.getTaxClearance);
+ const taxClearances= useSelector((data)=>data.getTaxClearances);
  const {success}= useSelector((data)=>data.updateTaxClearance);
 
  const id=useParams().id;
- const {loading,error,data}=taxClearance;
+ const {loading,error,data}=taxClearances;
+ console.log(taxClearances);
+ let info=loading ? "loading" : error ? "error": data.data.filter((item)=>item._id===id);
+ console.log(info);
+
+
 
     const dispatch= useDispatch();
     const navigate=useNavigate()
@@ -22,42 +28,36 @@ function UpdateTaxClearance() {
  
 
 
-    const [companyName, setCompanyName] = useState(loading ? "loading...": error? "error...": data.companyName);
-    const [ createdAt, setCreatedAt] = useState(loading ? "loading...": error? "error...": data.createdAt);
+    const [companyName, setCompanyName] = useState(info[0].companyName);
+    const [ createdAt, setCreatedAt] = useState(info[0].createdAt);
   
-    const [ businessPartnerNo, setBusinessPartnerNo] = useState(loading ? "loading...": error? "error...":data.businessPartnerNo)
-    const [startPeriod, setStartPeriod] = useState(loading ? "loading...": error? "error...":data.startPeriod)
-    const [expiryDate, setExpiryDate] = useState(loading ? "loading...": error? "error...": data.expiryDate) 
+    const [ businessPartnerNo, setBusinessPartnerNo] = useState(info[0].businessPartnerNo)
+    const [startPeriod, setStartPeriod] = useState(info[0].startPeriod)
+    const [expiryDate, setExpiryDate] = useState(info[0].expiryDate) 
  
-    const [tempCompanyName, setTempCompanyName] = useState();
-    const [ tempcreatedAt, setTempCreatedAt] = useState();
-  
-    const [ tempbusinessPartnerNo, setTempBusinessPartnerNo] = useState()
-    const [tempStartPeriod, setTempStartPeriod] = useState()
-    const [tempExpiryDate, setTempExpiryDate] = useState() 
+    
 
-    const [tempPdf, setTempPdf] = useState()
-  
+    const [pdf, setpdf] = useState(info[0].pdf)
+   
+   
     useEffect(() => {
       dispatch(gettaxclearance(id))
-setTempCompanyName(data.companyName)
-     setTempCreatedAt(data.createdAt)
-     setTempExpiryDate(data.expiryDate)
-     setTempStartPeriod(data.startPeriod)
-     setTempBusinessPartnerNo(data.businessPartnerNo)
-     steTempPdf(data.pdf)
-    }, [success])
+      dispatch(gettaxclearances())
 
-  console.log(tempCompanyName,tempCreatedAt,tempExpiryDate,tempBusinessPartnerNo,tempPdf)
+    
+    }, [id])
+
+
  
     function submitTaxClearance(e) {
       e.preventDefault();
   dispatch(updatetaxclearance(id,companyName,businessPartnerNo,startPeriod,expiryDate,pdf))
 alert("You have succesfully updated your tax clearance")
      navigate("/tax-clearances")
-
+     window.location.reload()
   
 }
+
 
 document.title="Tax clearance checker - Update Tax clearance "
       return    <div class="layout-wrapper layout-content-navbar">
@@ -126,7 +126,7 @@ document.title="Tax clearance checker - Update Tax clearance "
                   <div class="col-sm-10">
                     <div class="input-group input-group-merge">
                       <input
-                      onChange={(e)=>setCreatedAt(e.target.value)}
+                      onChange={(e)=>setStartPeriod(e.target.value)}
                         type="input"
                         id="basic-default-email"
                         class="form-control"

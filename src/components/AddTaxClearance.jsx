@@ -51,7 +51,9 @@ dispatch(createtaxclearance(companyName,businessPartnerNo,startPeriod,expiryDate
 useEffect(() => {
   if (success===true) {
     alert(` Tax clearance  has been added succesfully`)
+   
     navigate('/tax-clearances')
+    window.location.reload()
   }
   
  }, [success,navigate])
