@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { CREATE_TAX_CLEARANCE_FAIL, CREATE_TAX_CLEARANCE_REQUEST, CREATE_TAX_CLEARANCE_SUCCESS, DELETE_TAX_CLEARANCE_FAIL, DELETE_TAX_CLEARANCE_REQUEST, DELETE_TAX_CLEARANCE_SUCCESS, GET_TAX_CLEARANCES_FAIL, GET_TAX_CLEARANCES_REQUEST, GET_TAX_CLEARANCES_SUCCESS, GET_TAX_CLEARANCE_FAIL, GET_TAX_CLEARANCE_REQUEST, GET_TAX_CLEARANCE_SUCCESS, UPDATE_TAX_CLEARANCE_FAIL, UPDATE_TAX_CLEARANCE_REQUEST, UPDATE_TAX_CLEARANCE_SUCCESS } from "../constants/taxclearances";
-let baseUrl="https://tax-clearance-checker-backend-production.up.railway.app/api/v1"
+let baseUrl="https://takau-backend-production-1ffd.up.railway.app/api/v1"
 
 export const gettaxclearances =()=>async(dispatch,getState)=>{
     const {userSignin:{userInfo}}= getState();
